@@ -1,5 +1,10 @@
 pipeline {
-    agent none
+    agent {
+        kubernetes {
+            defaultContainer 'jnlp'
+            yamlFile 'kaniko/pod.yaml'
+        }
+    }
 
     stages {
         stage('Checkout Code') {
@@ -10,12 +15,6 @@ pipeline {
         }
 
        stage('Build') {
-            agent {
-                kubernetes {
-                    yamlFile 'kaniko/pod.yaml'
-                }
-            }
-            
             steps {
                 container(name: 'kaniko', shell: '/busybox/sh') {
                     script {
