@@ -23,6 +23,7 @@ pipeline {
                             --dockerfile Dockerfile \
                             --context `pwd`/ \
                             --verbosity debug \
+                            --customPlatform=linux/amd64 \
                             --destination jsmth/test-build:latest
                         '''
                     }
