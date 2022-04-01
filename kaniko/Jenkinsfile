@@ -1,0 +1,27 @@
+pipeline {
+    agent none
+
+    stages {
+       stage('Build') {
+            agent {
+                kubernetes {
+                    yaml 'pod.yaml'
+                }
+            }
+            
+            steps {
+                container(name: 'executor', shell: '/busybox/sh') {
+                    script {
+                        sh  '''
+                            /kaniko/executor \
+                            --dockerfile Dockerfile \
+                            --context `pwd`/ \
+                            --verbosity debug \
+                            --destination jksmth/test-build:latest
+                        '''
+                    }
+                }
+            }
+        }
+    }
+}
