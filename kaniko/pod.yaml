@@ -11,6 +11,9 @@ spec:
       imagePullPolicy: IfNotPresent
       command:
         - /busybox/cat
+      env:
+        - name: container
+          value: kube
       resources:
         limits: {}
         requests:
