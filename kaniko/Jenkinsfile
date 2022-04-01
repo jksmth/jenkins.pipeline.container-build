@@ -23,7 +23,7 @@ pipeline {
                             --dockerfile Dockerfile \
                             --context `pwd`/ \
                             --verbosity debug \
-                            --destination jksmth/test-build:latest
+                            --destination jsmth/test-build:latest
                         '''
                     }
                 }
