@@ -10,7 +10,7 @@ pipeline {
             }
             
             steps {
-                container(name: 'executor', shell: '/busybox/sh') {
+                container(name: 'kaniko', shell: '/busybox/sh') {
                     script {
                         sh  '''
                             /kaniko/executor \
